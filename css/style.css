@@ -14,3 +14,21 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+
+.top-calendar,
+.main-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#calendar li,
+#nome-mese {
+    text-transform: capitalize;
+}
+
+.festivo {
+    color: red;
+}
