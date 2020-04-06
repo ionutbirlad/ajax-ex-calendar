@@ -24,7 +24,7 @@ $(document).ready(function () {
           stampaGiorniMese(dataIniziale);
           stampaFestivi(dataIniziale);
           if(dataIniziale.isSameOrAfter(limiteFinale)) {
-             $('.mese-succ').prop('disabled', true);
+             $('.mese-succ').prop("disabled", true);
         }
       }
     });
@@ -45,6 +45,8 @@ $(document).ready(function () {
 
     });
 
+
+
     function stampaFestivi(variabileMeseCorrente) {
         $.ajax({
             url: 'https://flynn.boolean.careers/exercises/api/holidays',
@@ -59,7 +61,8 @@ $(document).ready(function () {
                     var giornoFestivo = giorniFestivi[i];
                     var nomeFestivo = giornoFestivo.name;
                     var dataFestivo = giornoFestivo.date;
-                    $('#calendar div[data-day="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeFestivo);
+                    // $('#calendar div[data-day="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeFestivo);
+                    $('#calendar div[data-day="' + dataFestivo + '"]').addClass('festivo').append("<div>'" + nomeFestivo + "'</div>");
                 }
             }
         });
@@ -73,7 +76,7 @@ $(document).ready(function () {
         $('#nome-mese').text(nomeMese); // Aggiorniamo il nome del mese in top calendar
         for (var i = 1; i <= giorniMese; i++) {
             var giornoDaInserire = {
-                day: i + ' ' + nomeMese,
+                day: i,
                 dataDay: standardDay.format('YYYY-MM-DD'),
                 giorno: standardDay.format("dddd")
             }
