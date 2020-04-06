@@ -1,71 +1,85 @@
 $(document).ready(function () {
 
-  var htmlGiorno = $('#calendar-template').html();
-  var templateGiorno = Handlebars.compile(htmlGiorno);
+    var htmlGiorno = $('#calendar-template').html();
+    var templateGiorno = Handlebars.compile(htmlGiorno);
 
-  // Stampare il mese di Gennaio 2018
-  // Tramite click stampare il mese successivo
+    // Stampare il mese di Gennaio 2018
+    // Tramite click stampare il mese successivo
 
-  var dataIniziale = moment('2018-01-01');
-  var mese = dataIniziale.format('M') - 1;
-  stampaGiorniMese(dataIniziale); // Inizializzazione Calendario
-  stampaFestivi(mese);
+    var dataIniziale = moment('2018-01-01');
 
-  $('.mese-succ').click(function () {
-      dataIniziale.add(1, 'month');
-      mese = mese + 1;
-      stampaGiorniMese(dataIniziale);
-      stampaFestivi(mese);
-  });
-  $('.mese-prec').click(function () {
-      dataIniziale.subtract(1, 'month');
-      mese = mese - 1;
-      stampaGiorniMese(dataIniziale);
-      stampaFestivi(mese);
-  });
+    var limiteIniziale = moment('2018-01-01');
+    var limiteFinale = moment('2018-12-01');
 
-  function stampaFestivi(mese) {
-      $.ajax({
-          url: 'https://flynn.boolean.careers/exercises/api/holidays',
-          method: 'GET',
-          data: {
-              year: 2018,
-              month: mese
-          },
-          success: function (data) {
-              var giorniFestivi = data.response;
-              for (var i = 0; i < giorniFestivi.length; i++) {
-                  var giornoFestivo = giorniFestivi[i];
-                  var nomeFestivo = giornoFestivo.name;
-                  var dataFestivo = giornoFestivo.date;
-                  $('#calendar li[data-day="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeFestivo);
-              }
-          }
-      });
-  }
+    stampaGiorniMese(dataIniziale); // Inizializzazione Calendario
+    stampaFestivi(dataIniziale);
 
-  function stampaGiorniMese(meseDaStampare) {
-      $('#calendar').empty();
-      var standardDay = meseDaStampare.clone();
-      var giorniMese = meseDaStampare.daysInMonth();
-      var nomeMese = meseDaStampare.format('MMMM');
-      $('#nome-mese').text(nomeMese); // Aggiorniamo il nome del mese in top calendar
-      for (var i = 1; i <= giorniMese; i++) {
-          // $('#calendar').append('<li>' + i + ' ' + nomeMese + '</li>');
-          var giornoDaInserire = {
-              day: i + ' ' + nomeMese,
-              dataDay: standardDay.format('YYYY-MM-DD')
-          }
-          var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
-          $('#calendar').append(templateFinale);
-          standardDay.add(1, 'day');
+    $('.mese-succ').click(function () { // Mese successivo
+        $('.mese-prec').prop('disabled', false);
+        if (dataIniziale.isSameOrAfter(limiteFinale)) {
+          alert('Hai provato ad hackerarmi! :( ');
+        } else {
+          dataIniziale.add(1, 'month');
+          stampaGiorniMese(dataIniziale);
+          stampaFestivi(dataIniziale);
+          if(dataIniziale.isSameOrAfter(limiteFinale)) {
+             $('.mese-succ').prop('disabled', true);
+        }
       }
-  }
+    });
 
+    // Devo controllare che il mese
+    $('.mese-prec').click(function () { // Mese precedente
+      $('.mese-succ').prop('disabled', false);
+         if(dataIniziale.isSameOrBefore(limiteIniziale)){
+              alert('Hai provato ad hackerarmi! :( ');
+         } else {
+             dataIniziale.subtract(1, 'month');
+             stampaGiorniMese(dataIniziale);
+             stampaFestivi(dataIniziale);
+             if(dataIniziale.isSameOrBefore(limiteIniziale)) {
+                $('.mese-prec').prop('disabled', true);
+           }
+         }
 
+    });
 
+    function stampaFestivi(variabileMeseCorrente) {
+        $.ajax({
+            url: 'https://flynn.boolean.careers/exercises/api/holidays',
+            method: 'GET',
+            data: {
+                year: variabileMeseCorrente.year(),
+                month: variabileMeseCorrente.month()
+            },
+            success: function (data) {
+                var giorniFestivi = data.response;
+                for (var i = 0; i < giorniFestivi.length; i++) {
+                    var giornoFestivo = giorniFestivi[i];
+                    var nomeFestivo = giornoFestivo.name;
+                    var dataFestivo = giornoFestivo.date;
+                    $('#calendar li[data-day="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeFestivo);
+                }
+            }
+        });
+    }
 
-
-
+    function stampaGiorniMese(meseDaStampare) {
+        $('#calendar').empty();
+        var standardDay = meseDaStampare.clone(); // cloniamo il mese da stampare per poterlo inserire dentro all'attributo data-day
+        var giorniMese = meseDaStampare.daysInMonth(); // Quanti giorni ci sono nel mese corrente.
+        var nomeMese = meseDaStampare.format('MMMM'); // Prendiamo il nome del mese
+        $('#nome-mese').text(nomeMese); // Aggiorniamo il nome del mese in top calendar
+        for (var i = 1; i <= giorniMese; i++) {
+            // $('#calendar').append('<li>' + i + ' ' + nomeMese + '</li>');
+            var giornoDaInserire = {
+                day: i + ' ' + nomeMese,
+                dataDay: standardDay.format('YYYY-MM-DD')
+            }
+            var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
+            $('#calendar').append(templateFinale);
+            standardDay.add(1, 'day'); // Incrementiamo il valore all'attributo data-day
+        }
+    }
 
 });

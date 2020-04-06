@@ -1,27 +1,23 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.clearfix::after{
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.container{
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-
 .top-calendar,
 .main-calendar {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.btn-navigation {
+     padding: 5px 20px;
+     border-radius: 5px;
+     background-color: purple;
+     color: white;
+     border: none;
+     cursor: pointer;
+}
+
+.btn-navigation:disabled{
+     background-color: #efefef;
+     cursor: not-allowed;
 }
 
 #calendar li,
