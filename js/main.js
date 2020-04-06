@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+     $('.mese-prec').parent(".btn-navigation").addClass("disabled");
+
     var htmlGiorno = $('#calendar-template').html();
     var templateGiorno = Handlebars.compile(htmlGiorno);
 
@@ -15,8 +17,8 @@ $(document).ready(function () {
     stampaFestivi(dataIniziale);
 
 
-    $('.mese-succ').click(function () { // Mese successivo
-        $('.mese-prec').prop('disabled', false);
+    $('.mese-succ').parent(".btn-navigation").click(function () { // Mese successivo
+        $('.mese-prec').parent(".btn-navigation").removeClass("disabled");
         if (dataIniziale.isSameOrAfter(limiteFinale)) {
           alert('Hai provato ad hackerarmi! :( ');
         } else {
@@ -24,14 +26,14 @@ $(document).ready(function () {
           stampaGiorniMese(dataIniziale);
           stampaFestivi(dataIniziale);
           if(dataIniziale.isSameOrAfter(limiteFinale)) {
-             $('.mese-succ').prop("disabled", true);
+             $('.mese-succ').parent(".btn-navigation").addClass("disabled");
         }
       }
     });
 
     // Devo controllare che il mese
-    $('.mese-prec').click(function () { // Mese precedente
-      $('.mese-succ').prop('disabled', false);
+    $('.mese-prec').parent(".btn-navigation").click(function () { // Mese precedente
+      $('.mese-succ').parent(".btn-navigation").removeClass("disabled");
          if(dataIniziale.isSameOrBefore(limiteIniziale)){
               alert('Hai provato ad hackerarmi! :( ');
          } else {
@@ -39,7 +41,7 @@ $(document).ready(function () {
              stampaGiorniMese(dataIniziale);
              stampaFestivi(dataIniziale);
              if(dataIniziale.isSameOrBefore(limiteIniziale)) {
-                $('.mese-prec').prop('disabled', true);
+                $('.mese-prec').parent(".btn-navigation").addClass("disabled");
            }
          }
 

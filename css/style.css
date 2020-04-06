@@ -63,10 +63,8 @@ body{
   justify-content: center;
   cursor: pointer;
 }
-
-.btn-navigation:disabled{
-     background-color: #efefef;
-     cursor: not-allowed;
+.btn-navigation.disabled{
+  pointer-events: none;
 }
 
 .festivo {
