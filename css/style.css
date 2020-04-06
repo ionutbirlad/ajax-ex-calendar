@@ -8,6 +8,8 @@ body{
   padding-top: 50px;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .wrapper{
@@ -99,6 +101,7 @@ body{
   flex-wrap: wrap;
   color: #000000;
   font-size: 12px;
+  background: #fff;
 }
 #calendar div{
   width: 100px;
