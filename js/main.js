@@ -94,7 +94,6 @@ $(document).ready(function () {
           // console.log(spaziBianchi);
           for (var i = 0; i < spaziBianchi; i++) {
             $("<div></div>").insertBefore("#calendar div:first-child");
-
           }
         }
     }
