@@ -14,6 +14,7 @@ $(document).ready(function () {
     stampaGiorniMese(dataIniziale); // Inizializzazione Calendario
     stampaFestivi(dataIniziale);
 
+
     $('.mese-succ').click(function () { // Mese successivo
         $('.mese-prec').prop('disabled', false);
         if (dataIniziale.isSameOrAfter(limiteFinale)) {

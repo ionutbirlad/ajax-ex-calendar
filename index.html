@@ -7,30 +7,30 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/it.js" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.4/handlebars.min.js" charset="utf-8"></script>
+        <script src="https://kit.fontawesome.com/80a8b5f4b8.js" crossorigin="anonymous"></script>
         <title>Calendar</title>
     </head>
     <body>
-        <div class="top-calendar">
+        <div class="wrapper">
+          <div class="top-calendar">
+            <div class="btn-navigation"><i class="fas fa-chevron-left mese-prec"></i></div>
             <h1><span id="nome-mese">Gennaio</span> 2018</h1>
-            <div class="top-navigation">
-                <button class="btn-navigation mese-prec" disabled><< Mese precedente</button>
-                <button class="btn-navigation mese-succ">Mese successivo >></button>
-            </div>
-        </div>
+            <div class="btn-navigation"><i class="fas fa-chevron-right mese-succ"></i></div>
+          </div>
+          <div class="days">
+            <div class="monday">Lunedì</div>
+            <div class="tuesday">Martedì</div>
+            <div class="wednesday">Mercoledì</div>
+            <div class="thursday">Giovedì</div>
+            <div class="friday">Venerdì</div>
+            <div class="saturday">Sabato</div>
+            <div class="sunday">Domenica</div>
+          </div>
+          <div class="main-calendar">
+              <div id="calendar">
 
-        <div class="main-calendar">
-            <div id="calendar">
-              <div class="days">
-                <div class="monday">Lunedì</div>
-                <div class="tuesday">Martedì</div>
-                <div class="wednesday">Mercoledì</div>
-                <div class="thursday">Giovedì</div>
-                <div class="friday">Venerdì</div>
-                <div class="saturday">Sabato</div>
-                <div class="sunday">Domenica</div>
               </div>
-
-            </div>
+          </div>
         </div>
 
         <script id="calendar-template" type="text/x-handlebars-template">
