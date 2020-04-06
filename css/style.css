@@ -12,6 +12,27 @@ body{
   background-repeat: no-repeat;
 }
 
+.btn-expand{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #353b4850;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 2;
+}
+.btn-expand i{
+  font-size: 25px;
+}
+.btn-expand:hover{
+  background: #353b4890;
+}
+
 .wrapper{
   width: 700px;
   margin: 0 auto;
@@ -20,6 +41,10 @@ body{
   -moz-box-shadow:    3px 3px 5px 6px #ccc;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   box-shadow:         3px 3px 5px 6px #ccc;
+  transition: 0.2s;
+}
+.wrapper .big.hidden{
+  display: none;
 }
 
 .main-calendar {
@@ -80,12 +105,6 @@ body{
   width: 700px;
   display: flex;
   margin: 0 auto;
-}
-.days.animation{
-  animation: opo 0.5s;
-}
-.days.animation-two{
-  animation: opoo 0.5s;
 }
 .days div{
   width: 100px;
