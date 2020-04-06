@@ -68,6 +68,9 @@ body{
 .btn-navigation.disabled{
   pointer-events: none;
 }
+.btn-navigation:hover{
+  background: #353b4890;
+}
 
 .festivo {
     color: red;

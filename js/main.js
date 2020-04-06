@@ -102,23 +102,27 @@ $(document).ready(function () {
             $("<div></div>").insertBefore("#calendar div:first-child");
           }
         }
-        if (nomeMese == "gennaio" || nomeMese == "febbraio" || nomeMese == "dicembre") {
-          $("body").css("background", "url(img/winter.jpg)");
-          $("body").css("background-size", "cover");
-          $("body").css("background-repeat", "no-repeat");
-        } else if (nomeMese == "giugno" || nomeMese == "luglio" || nomeMese == "agosto") {
-          $("body").css("background", "url(img/summer.jpg)");
-          $("body").css("background-size", "cover");
-          $("body").css("background-repeat", "no-repeat");
-        } else if (nomeMese == "marzo" || nomeMese == "aprile" || nomeMese == "maggio") {
-          $("body").css("background", "url(img/spring.jpg)");
-          $("body").css("background-size", "cover");
-          $("body").css("background-repeat", "no-repeat");
-        } else if (nomeMese == "settembre" || nomeMese == "ottobre" || nomeMese == "novembre") {
-          $("body").css("background", "url(img/autumn.jpg)");
-          $("body").css("background-size", "cover");
-          $("body").css("background-repeat", "no-repeat");
-        }
+      setBackground(nomeMese);
+    }
+
+    function setBackground(nomeMese) {
+      if (nomeMese == "gennaio" || nomeMese == "febbraio" || nomeMese == "dicembre") {
+        $("body").css("background", "url(img/winter.jpg)");
+        $("body").css("background-size", "cover");
+        $("body").css("background-repeat", "no-repeat");
+      } else if (nomeMese == "giugno" || nomeMese == "luglio" || nomeMese == "agosto") {
+        $("body").css("background", "url(img/summer.jpg)");
+        $("body").css("background-size", "cover");
+        $("body").css("background-repeat", "no-repeat");
+      } else if (nomeMese == "marzo" || nomeMese == "aprile" || nomeMese == "maggio") {
+        $("body").css("background", "url(img/spring.jpg)");
+        $("body").css("background-size", "cover");
+        $("body").css("background-repeat", "no-repeat");
+      } else if (nomeMese == "settembre" || nomeMese == "ottobre" || nomeMese == "novembre") {
+        $("body").css("background", "url(img/autumn.jpg)");
+        $("body").css("background-size", "cover");
+        $("body").css("background-repeat", "no-repeat");
+      }
     }
 
 });
