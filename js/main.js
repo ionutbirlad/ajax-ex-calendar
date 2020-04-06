@@ -58,7 +58,7 @@ $(document).ready(function () {
                     var giornoFestivo = giorniFestivi[i];
                     var nomeFestivo = giornoFestivo.name;
                     var dataFestivo = giornoFestivo.date;
-                    $('#calendar li[data-day="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeFestivo);
+                    $('#calendar div[data-day="' + dataFestivo + '"]').addClass('festivo').append(' - ' + nomeFestivo);
                 }
             }
         });
@@ -71,14 +71,31 @@ $(document).ready(function () {
         var nomeMese = meseDaStampare.format('MMMM'); // Prendiamo il nome del mese
         $('#nome-mese').text(nomeMese); // Aggiorniamo il nome del mese in top calendar
         for (var i = 1; i <= giorniMese; i++) {
-            // $('#calendar').append('<li>' + i + ' ' + nomeMese + '</li>');
             var giornoDaInserire = {
                 day: i + ' ' + nomeMese,
-                dataDay: standardDay.format('YYYY-MM-DD')
+                dataDay: standardDay.format('YYYY-MM-DD'),
+                giorno: standardDay.format("dddd")
             }
+            // console.log(standardDay.format("dddd"));
             var templateFinale = templateGiorno(giornoDaInserire); // Stiamo popolando il template con i dati dell'oggetto
             $('#calendar').append(templateFinale);
             standardDay.add(1, 'day'); // Incrementiamo il valore all'attributo data-day
+        }
+        var a = meseDaStampare.clone();
+        // console.log(a);
+        var b = a.subtract(1, "month");
+        b.endOf('month').startOf('isoweek')
+        // console.log(b);
+        var c = meseDaStampare.clone();
+        c.startOf('month');
+        // console.log(c);
+        if (!($("#calendar").find("div:first-child").hasClass("lunedì"))) {
+          var spaziBianchi = c.diff(b, "days");
+          // console.log(spaziBianchi);
+          for (var i = 0; i < spaziBianchi; i++) {
+            $("<div></div>").insertBefore("#calendar div:first-child");
+
+          }
         }
     }
 

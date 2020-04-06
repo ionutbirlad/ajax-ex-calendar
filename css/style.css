@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .top-calendar,
 .main-calendar {
     display: flex;
@@ -20,11 +25,33 @@
      cursor: not-allowed;
 }
 
-#calendar li,
-#nome-mese {
-    text-transform: capitalize;
-}
-
 .festivo {
     color: red;
+}
+
+.days{
+  width: 700px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+.days div{
+  width: 100px;
+  height: 40px;
+  border: 1px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+#calendar{
+  width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#calendar div{
+  width: 100px;
+  height: 80px;
+  border: 1px solid #000000;
 }
